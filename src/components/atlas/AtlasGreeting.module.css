@@ -1,0 +1,28 @@
+.greeting {
+  max-width: 28rem;
+}
+
+.hello {
+  margin: 0;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.introduction,
+.welcome {
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+}
+
+.introduction {
+  margin-top: var(--space-3);
+  color: var(--color-foreground);
+  font-weight: 550;
+}
+
+.welcome {
+  margin-top: var(--space-1);
+  color: var(--color-muted);
+}

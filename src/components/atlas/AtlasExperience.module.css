@@ -1,0 +1,231 @@
+.experience {
+  position: relative;
+  display: grid;
+  min-height: clamp(37rem, 82vh, 58rem);
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.controls {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) clamp(var(--space-3), 4vw, var(--space-5));
+}
+
+.skip {
+  min-height: 2.75rem;
+  flex: 0 0 auto;
+  cursor: pointer;
+  padding: 0.65rem 0.95rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 72%);
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.skip:hover {
+  border-color: var(--color-foreground);
+}
+
+.stage {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.atlasTrack {
+  position: absolute;
+  right: clamp(1rem, 7vw, 7rem);
+  bottom: clamp(0.5rem, 2vh, 2rem);
+  width: clamp(8.75rem, 17vw, 13rem);
+  transform: translate3d(0, 0, 0) scale(1);
+  transform-origin: bottom center;
+  transition: transform var(--phase-duration) cubic-bezier(0.22, 0.78, 0.22, 1);
+  will-change: transform;
+}
+
+.experience[data-arrival-side="left"] .atlasTrack {
+  right: auto;
+  left: clamp(1rem, 7vw, 7rem);
+}
+
+.experience[data-phase="distant-wander"] .atlasTrack {
+  transform: translate3d(-64vw, -40vh, 0) scale(0.22) rotate(-3deg);
+}
+
+.experience[data-phase="inspect"] .atlasTrack {
+  transform: translate3d(-58vw, -32vh, 0) scale(0.29) rotate(-5deg);
+}
+
+.experience[data-phase="distracted"] .atlasTrack {
+  transform: translate3d(-52vw, -39vh, 0) scale(0.32) rotate(6deg);
+}
+
+.experience[data-phase="notice"] .atlasTrack,
+.experience[data-phase="freeze"] .atlasTrack,
+.experience[data-phase="double-take"] .atlasTrack {
+  transform: translate3d(-48vw, -35vh, 0) scale(0.34);
+}
+
+.experience[data-mode="full-energy"][data-phase="sprint"] .atlasTrack {
+  transform: translate3d(-7vw, -3vh, 0) scale(0.88) rotate(8deg);
+  transition-timing-function: cubic-bezier(0.1, 0.68, 0.16, 1);
+}
+
+.experience[data-mode="full-energy"][data-phase="slide"] .atlasTrack {
+  animation: full-energy-slide 500ms cubic-bezier(0.18, 0.78, 0.24, 1) both;
+  transition: none;
+}
+
+.experience[data-phase="antenna-bent"] .atlasTrack,
+.experience[data-phase="antenna-notice"] .atlasTrack,
+.experience[data-phase="antenna-correct"] .atlasTrack,
+.experience[data-phase="compose-self"] .atlasTrack,
+.experience[data-phase="greet"] .atlasTrack,
+.experience[data-phase="idle-energetic"] .atlasTrack,
+.experience[data-phase="idle-calm"] .atlasTrack,
+.experience[data-phase="reduced-motion-ready"] .atlasTrack {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.experience[data-mode="calm"][data-phase="distant-wander"] .atlasTrack {
+  transform: translate3d(-54vw, -31vh, 0) scale(0.28);
+}
+
+.experience[data-mode="calm"][data-phase="inspect"] .atlasTrack,
+.experience[data-mode="calm"][data-phase="distracted"] .atlasTrack,
+.experience[data-mode="calm"][data-phase="notice"] .atlasTrack,
+.experience[data-mode="calm"][data-phase="freeze"] .atlasTrack,
+.experience[data-mode="calm"][data-phase="double-take"] .atlasTrack {
+  transform: translate3d(-46vw, -28vh, 0) scale(0.34);
+}
+
+.experience[data-mode="calm"][data-phase="sprint"] .atlasTrack {
+  transform: translate3d(-8vw, -2vh, 0) scale(0.82);
+}
+
+.experience[data-mode="calm"][data-phase="slide"] .atlasTrack {
+  transform: translate3d(0.35rem, 0, 0) scale(1);
+}
+
+.greetingPanel {
+  position: relative;
+  z-index: 10;
+  align-self: center;
+  justify-self: start;
+  margin: clamp(5rem, 12vh, 9rem) clamp(var(--space-3), 9vw, 9rem)
+    clamp(12rem, 26vh, 18rem);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 0.75rem, 0);
+  transition:
+    opacity 400ms ease,
+    transform 400ms ease;
+}
+
+.greetingPanel[data-revealed="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+}
+
+.experience[data-mode="reduced-motion"] .greetingPanel {
+  transform: none;
+  transition: opacity 160ms ease;
+}
+
+@media (max-width: 48rem) {
+  .experience {
+    min-height: clamp(42rem, 88svh, 54rem);
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .skip {
+    align-self: flex-start;
+  }
+
+  .atlasTrack {
+    right: max(var(--space-2), env(safe-area-inset-right));
+    bottom: max(var(--space-2), env(safe-area-inset-bottom));
+    width: clamp(7.5rem, 35vw, 10.5rem);
+  }
+
+  .experience[data-arrival-side="left"] .atlasTrack {
+    left: max(var(--space-2), env(safe-area-inset-left));
+  }
+
+  .experience[data-phase="distant-wander"] .atlasTrack {
+    transform: translate3d(-50vw, -36vh, 0) scale(0.28);
+  }
+
+  .experience[data-phase="inspect"] .atlasTrack,
+  .experience[data-phase="distracted"] .atlasTrack,
+  .experience[data-phase="notice"] .atlasTrack,
+  .experience[data-phase="freeze"] .atlasTrack,
+  .experience[data-phase="double-take"] .atlasTrack {
+    transform: translate3d(-43vw, -31vh, 0) scale(0.34);
+  }
+
+  .experience[data-mode="full-energy"][data-phase="sprint"] .atlasTrack {
+    transform: translate3d(-5vw, -2vh, 0) scale(0.9) rotate(7deg);
+  }
+
+  .greetingPanel {
+    align-self: start;
+    margin: clamp(8rem, 22vh, 12rem) var(--space-3) 13rem;
+  }
+}
+
+@media (max-width: 34rem) {
+  .controls {
+    padding: var(--space-2);
+  }
+
+  .greetingPanel {
+    margin-inline: var(--space-2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atlasTrack {
+    transition-duration: 0.01ms !important;
+  }
+
+  .greetingPanel {
+    transform: none !important;
+    transition: opacity 160ms ease !important;
+  }
+
+  .experience .atlasTrack {
+    animation: none !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+  }
+}
+
+@keyframes full-energy-slide {
+  0% {
+    transform: translate3d(-7vw, -3vh, 0) scale(0.88) rotate(8deg);
+  }
+  58% {
+    transform: translate3d(2rem, 0, 0) scale(1.04) rotate(7deg);
+  }
+  78% {
+    transform: translate3d(-0.45rem, 0, 0) scale(0.99) rotate(-2deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
