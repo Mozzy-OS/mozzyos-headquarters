@@ -5,10 +5,13 @@
   --color-muted: #5f5f5b;
   --color-border: #deded9;
   --color-focus: #3157a4;
+  --color-accent: #ffb45d;
   --content-width: 42rem;
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2rem;
+  --space-5: 3rem;
   --radius: 0.5rem;
+  --radius-large: 1rem;
 }

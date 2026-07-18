@@ -1,36 +1,4 @@
 .main {
-  display: grid;
   min-height: 100vh;
-  place-items: center;
-  padding: var(--space-3);
-}
-
-.placeholder {
-  width: min(100%, var(--content-width));
-  padding: clamp(var(--space-3), 6vw, 4rem);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  text-align: center;
-}
-
-.title {
-  font-size: clamp(1.75rem, 7vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  text-wrap: balance;
-}
-
-.release {
-  margin-top: var(--space-3);
-  color: var(--color-muted);
-  font-size: 1rem;
-}
-
-.codename {
-  margin-top: var(--space-1);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.875rem;
-  letter-spacing: 0.04em;
+  padding: clamp(0.5rem, 1.6vw, 1.25rem);
 }
